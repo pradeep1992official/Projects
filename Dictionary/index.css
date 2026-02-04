@@ -1,0 +1,99 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+  background-color: cornflowerblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+.container {
+  background-color: rgb(255, 255, 255);
+  padding: 20px 30px 20px 30px;
+  border-radius: 15px;
+  width: 60vmin;
+}
+
+.heading {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: dodgerblue;
+  padding: 20px;
+}
+
+.search-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 30px 0px 30px 0px;
+}
+
+.search-box input {
+  border-radius: 5px;
+  border: none;
+  border-bottom: 2px solid dodgerblue;
+  font-size: 16px;
+  width: 80%;
+  outline: none;
+  line-height: 2;
+}
+
+.search-box button {
+  border: none;
+  background-color: dodgerblue;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 5px 15px 5px 15px;
+  cursor: pointer;
+  outline: none;
+}
+.search-box button:hover {
+  background-color: cornflowerblue;
+}
+
+.output {
+  display: flex;
+  padding: 20px 0px 0px 0px;
+  font-size: 36px;
+  margin-bottom: 0px;
+  font-weight: bolder;
+}
+
+.details {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: rgb(126, 128, 128);
+  font-weight: bold;
+  font-style: italic;
+  margin: 0px 0px 0px 10px;
+  height: 15px;
+}
+
+p {
+  margin: 0px;
+  line-height: 25px;
+  lighting-color: aqua;
+}
+
+.meaning {
+  margin-top: 20px;
+  font-size: 18px;
+}
+.example {
+  margin-left: 20px;
+  border-left: 3px solid dodgerblue;
+  padding-left: 20px;
+  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  color:lightslategray;
+}
