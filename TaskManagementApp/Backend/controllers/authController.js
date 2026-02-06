@@ -1,7 +1,9 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+import User from "../models/User.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 //User Registration
 const registerUser = async (req, res) => {
@@ -15,8 +17,8 @@ const registerUser = async (req, res) => {
     }
     await User.create({ name, email, password, role });
     res.status(201).json({ message: "User registered successfully" });
-  } catch (err) {
-    res.status(500).json({ error: "Internal Server Error" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error", message: error.message });
   }
 };
 
@@ -29,7 +31,7 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ error: "User not found" });
     }
 
-    const isMatch = await bcrypt.compare(password, User.password);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ error: "Invalid Credentials" });
     }
@@ -45,13 +47,13 @@ const loginUser = async (req, res) => {
         expiresIn: process.env.JWT_EXPIRES_IN,
       },
     );
-    res.status(200).json({token});
+    res.status(200).json({ token });
   } catch {
-    res.status(500).json({error : "Internal Server Error"})
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
-module.exports = {
+export {
   registerUser,
   loginUser,
-}
+};

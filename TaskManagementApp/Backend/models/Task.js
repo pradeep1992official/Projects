@@ -2,22 +2,22 @@ const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
   title : {
-    type:string,
+    type:String,
     required:true,
   },
   description :{
-    type:string,
+    type:String,
   },
   status :{
-    type:string,
+    type:String,
     enum : ["pending", "completed", "in Progress"],
     default : "pending",
   },
   priority :{
-    type:string,
+    type:String,
     enum : ["low", "medium", "high"],
     default : "medium",
-  }
+  },
   assignedTo : {
     type:mongoose.Schema.Types.ObjectId,
     ref:"User", 
@@ -35,12 +35,12 @@ const taskSchema = new mongoose.Schema({
       },
       fileUrl : {
         type : String,
-      }
+      },
       fileType : {
         type : String,
-      }
+      },
     }
-  ]
+  ],
   createdAt : {
     type : Date,
     default : Date.now,

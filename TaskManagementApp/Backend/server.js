@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dbconnect = require("./config/dbconfig");
 const cors = require("cors");
+const authRoutes = require("./router/auth");
+const taskRoutes = require("./router/task");
 
 require("dotenv").config();
 const port = process.env.PORT || 3000;
@@ -16,9 +18,8 @@ app.use(cors());
 dbconnect();
 
 //TestRoutes
-app.get("/", (req, res) => {
-  res.send("Task Manager API is running");
-});
+app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
 //Server
 app.listen(port, () => {
