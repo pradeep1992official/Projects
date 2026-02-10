@@ -4,6 +4,8 @@ const dbconnect = require("./config/dbconfig");
 const cors = require("cors");
 const authRoutes = require("./router/auth");
 const taskRoutes = require("./router/task");
+const notificationRoutes = require("./router/notification");
+const userRoutes = require("./router/user");
 
 require("dotenv").config();
 const port = process.env.PORT || 3000;
@@ -20,6 +22,8 @@ dbconnect();
 //TestRoutes
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/users", userRoutes);
 
 //Server
 app.listen(port, () => {
