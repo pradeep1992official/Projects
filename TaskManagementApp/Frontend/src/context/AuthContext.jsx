@@ -1,0 +1,23 @@
+import React, { createContext, useContext, useState } from "react";
+
+//Create a context for authentication
+const AuthContext = createContext();
+
+//Create a custom hook to use the AuthContext
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+
+  const login = (userData) => setUser(userData);
+  const logout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  )
+};
+
+export const useAuth = () => useContext(AuthContext);
