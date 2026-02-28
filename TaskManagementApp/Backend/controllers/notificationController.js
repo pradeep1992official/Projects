@@ -1,11 +1,11 @@
-const Notification = require("../models/Notification");
+const Notification = require("../models/NotificationModel");
 
 const getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find({ user: req.user._id }).sort({
       createdAt: -1,
     });
-    if (!notifications) {
+    if (!notifications || notifications.length === 0) {
       return res.status(404).json({ error: "No Notification found" });
     }
     res.status(200).json(notifications);
@@ -30,7 +30,7 @@ const markAsRead = async (req, res) => {
   }
 };
 
-module.export = {
+module.exports = {
   getNotifications,
   markAsRead,
 }

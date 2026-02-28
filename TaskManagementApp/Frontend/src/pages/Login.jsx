@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { API } from '../services/API'
+import API from '../services/axios'
+
 
 function Login() {
   const { login } = useAuth();
@@ -8,33 +9,37 @@ function Login() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       const response = await API.post('/auth/login', { email, password });
       localStorage.setItem("token", response.data.token);
-      login(response.data.user);
+      console.log('Login successful:', response.data);
+      // console.log('User data:', r);
+      login(response.data);
     } catch (err) {
       console.error('Login failed', err);
     }
   };
 
   return (
-    <div className='login-container'>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className='max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md'>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className=' mb-4 p-2 border border-gray-300 rounded-lg w-full'
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className=' mb-4 p-2 border border-gray-300 rounded-lg w-full'
+      />
+      <button onClick={handleSubmit} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+        Login
+      </button>
     </div>
   )
 }

@@ -56,7 +56,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.export ={
+module.exports = {
   getUsers,
   getUserById,
   updateUser,

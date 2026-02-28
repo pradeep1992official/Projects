@@ -4,7 +4,7 @@ const dbconnect = require("./config/dbconfig");
 const cors = require("cors");
 const authRoutes = require("./router/auth");
 const taskRoutes = require("./router/task");
-const notificationRoutes = require("./router/notification");
+const notificationRoutes = require("./router/notificationRoute");
 const userRoutes = require("./router/user");
 
 require("dotenv").config();
