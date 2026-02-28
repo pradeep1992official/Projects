@@ -18,7 +18,9 @@ const registerUser = async (req, res) => {
     await User.create({ name, email, password, role });
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error", message: error.message });
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", message: error.message });
   }
 };
 
@@ -52,8 +54,4 @@ const loginUser = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-module.exports = {
-  registerUser,
-  loginUser,
-};
+export { registerUser, loginUser };

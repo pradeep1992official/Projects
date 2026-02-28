@@ -2,14 +2,15 @@ import React, { useEffect } from 'react'
 import API from '../services/axios'
 import TaskCard from '../components/TaskCard'
 import AddTaskModal from '../components/AddTaskModal'
-import { useState } from 'react' 
+import { useState } from 'react'
 
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = async () => {
     try {
-      const response = await API.get("/tasks");
+      const response = await API.get("/tasks/getAllTasks");
+      console.log("Fetched tasks:", response.data);
       setTasks(response.data);
     }
     catch (err) {
@@ -18,9 +19,9 @@ function Dashboard() {
   }
 
   const handleTask = (newTask) => {
+    console.log("New task added:", newTask);
     setTasks([...tasks, newTask]);
   }
-
 
   useEffect(() => {
     fetchTasks();

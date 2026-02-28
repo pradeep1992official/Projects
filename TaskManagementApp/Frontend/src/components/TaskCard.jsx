@@ -6,8 +6,8 @@ function TaskCard({ task }) {
       <h3 className='font-bold text-lg'>{task.title}</h3>
       <p className='text-gray-600'>{task.description}</p>
       <span className={
-        `${task.status === "Completed" ? 'bg-green-200 text-green-800'
-          : task.status === "in-progress" ? 'bg-yellow-200 text-yellow-800'
+        `${task.status === "Completed" ? 'bg-green-200 text-green-800 px-1 py-1 rounded-lg'
+          : task.status === "pending" ? 'bg-yellow-200 text-yellow-800 px-1 py-1 rounded-lg'
             : 'bg-gray-200 text-gray-800'}`}>
         {task.status}
       </span>

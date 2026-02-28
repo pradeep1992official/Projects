@@ -1,8 +1,25 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
+import API from '../services/axios';
 
 function AddTaskModal({ onAddTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  const createTask = async (onAddTask1) => {
+    try {
+      const res = await API.post("/tasks/createtask",
+        onAddTask1,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+      console.log("Task created:", res.data);
+    }
+    catch (err) {
+      console.error("Error creating task:", err);
+    }
+  }
 
   const handleSubmit = (e) => {
     if (title.trim() && description.trim()) {
@@ -10,6 +27,8 @@ function AddTaskModal({ onAddTask }) {
       onAddTask({ title, description, status: 'pending' });
       setTitle("");
       setDescription("");
+      const newTask = createTask({ title, description, status: 'pending' });
+
     }
   }
 

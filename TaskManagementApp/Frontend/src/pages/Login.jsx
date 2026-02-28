@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import API from '../services/axios'
+import { useNavigate  } from 'react-router-dom'
+// const navigate = useNavigate();
 
 
 function Login() {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       const response = await API.post('/auth/login', { email, password });
       localStorage.setItem("token", response.data.token);
-      console.log('Login successful:', response.data);
-      // console.log('User data:', r);
-      login(response.data);
+      login(response.data.token);
+      navigate('/dashboard');
     } catch (err) {
       console.error('Login failed', err);
     }
