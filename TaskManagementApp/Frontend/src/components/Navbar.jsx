@@ -9,18 +9,22 @@ function Navbar() {
   return (
 
     <nav className='bg-gray-800 text-white p-4 flex justify-between items-center gap-4 '>
-      <Link to="/" className="text-lg font-bold">Task Manager </Link>
+      <Link to="/dashboard" className="text-lg font-bold">Task Manager </Link>
       <div>
         {user ? (
-          <button onClick={() => {
-            logout();
-            navigate('/login');
-          }} className='bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg'>
-            Log Out
-          </button>) : (
-          <Link to="/login" className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg" >
+          <>
+            <Link to="/notifications" className='text-white hover:text-gray-300'>Notifications</Link>
+            <button onClick={() => {
+              logout();
+              navigate('/login');
+            }} className='bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg'>
+              Log Out
+            </button>
+          </>) : (
+          <button onClick={() => navigate('/login')} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
             Login
-          </Link>
+          </button>
+
         )
         }
       </div>

@@ -77,10 +77,43 @@ const deleteTask = async (req, res) => {
   }
 };
 
+//Get Task Stats
+const getTaskStats = async (req, res) => {
+  try {
+    const stats = await Task.aggregate([
+      {
+        $match: {
+          createdBy: req.user.userId,
+        },
+      },
+      {
+        $group: {
+          _id: "$status",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    const result = {
+      pending: 0,
+      inProgress: 0,
+      completed: 0,
+    };
+
+    stats.forEach((stat) => {
+      result[stat._id] = stat.count;
+    });
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Server Error in Fetching Task Stats" });
+  }
+};
+
 module.exports = {
   getAllTasks,
   createTask,
   updateTask,
   deleteTask,
   getTaskById,
+  getTaskStats,
 };

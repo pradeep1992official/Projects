@@ -12,9 +12,11 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="*" element={<h1 className='text-center mt-20 text-3xl'>404 - Page Not Found</h1>} />
       </Routes>
     </Router>
   )
